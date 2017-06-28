@@ -1,0 +1,124 @@
+<?php
+
+	namespace CzProject\SqlGenerator\Statements;
+
+	use CzProject\SqlGenerator\OutOfRangeException;
+	use CzProject\SqlGenerator\Helpers;
+	use CzProject\SqlGenerator\IDriver;
+	use CzProject\SqlGenerator\IStatement;
+
+
+	class ForeignKeyDefinition implements IStatement
+	{
+		const ACTION_RESTRICT = 'RESTRICT';
+		const ACTION_NO_ACTION = 'NO_ACTION';
+		const ACTION_CASCADE = 'CASCADE';
+		const ACTION_SET_NULL = 'SET_NULL';
+
+		/** @var string|NULL */
+		private $name;
+
+		/** @var string[] */
+		private $columns;
+
+		/** @var string */
+		private $targetTable;
+
+		/** @var string */
+		private $targetColumns;
+
+		/** @var int */
+		private $onUpdateAction = self::ACTION_RESTRICT;
+
+		/** @var int */
+		private $onDeleteAction = self::ACTION_RESTRICT;
+
+
+		/**
+		 * @param  string
+		 * @param  string[]|string
+		 * @param  string
+		 * @param  string[]|string
+		 */
+		public function __construct($name, $columns = array(), $targetTable, $targetColumns = array())
+		{
+			$this->name = $name;
+			$this->targetTable = $targetTable;
+
+			if (!is_array($columns)) {
+				$columns = array($columns);
+			}
+
+			foreach ($columns as $column) {
+				$this->columns[] = $column;
+			}
+
+			if (!is_array($targetColumns)) {
+				$targetColumns = array($targetColumns);
+			}
+
+			foreach ($targetColumns as $targetColumn) {
+				$this->targetColumns[] = $targetColumn;
+			}
+		}
+
+
+		/**
+		 * @param  int
+		 * @return self
+		 */
+		public function setOnUpdateAction($onUpdateAction)
+		{
+			if (!$this->validateAction($onUpdateAction)) {
+				throw new OutOfRangeException("Action '$onUpdateAction' is invalid.");
+			}
+
+			$this->onUpdateAction = $onUpdateAction;
+			return $this;
+		}
+
+
+		/**
+		 * @param  int
+		 * @return self
+		 */
+		public function setOnDeleteAction($onDeleteAction)
+		{
+			if (!$this->validateAction($onDeleteAction)) {
+				throw new OutOfRangeException("Action '$onDeleteAction' is invalid.");
+			}
+
+			$this->onDeleteAction = $onDeleteAction;
+			return $this;
+		}
+
+
+		/**
+		 * @return string
+		 */
+		public function toSql(IDriver $driver)
+		{
+			$output = 'CONSTRAINT ' . $driver->escapeIdentifier($this->name);
+			$output .= ' FOREIGN KEY (';
+			$output .= implode(', ', array_map(array($driver, 'escapeIdentifier'), $this->columns));
+			$output .= ') REFERENCES ' . $driver->escapeIdentifier($this->targetTable) . ' (';
+			$output .= implode(', ', array_map(array($driver, 'escapeIdentifier'), $this->targetColumns));
+			$output .= ')';
+			$output .= ' ON DELETE ' . $this->onDeleteAction;
+			$output .= ' ON UPDATE ' . $this->onUpdateAction;
+			return $output;
+		}
+
+
+		/**
+		 * @param  string
+		 * @return bool
+		 */
+		private function validateAction($action)
+		{
+			return $action === self::ACTION_RESTRICT
+				|| $action === self::ACTION_NO_ACTION
+				|| $action === self::ACTION_CASCADE
+				|| $action === self::ACTION_SET_NULL;
+		}
+	}

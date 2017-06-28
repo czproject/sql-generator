@@ -1,0 +1,4 @@
+/vendor/
+composer.lock
+/tests/coverage.html
+/tests/**/output/
