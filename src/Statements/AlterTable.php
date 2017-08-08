@@ -140,7 +140,7 @@
 		 */
 		public function toSql(IDriver $driver)
 		{
-			if (empty($this->statements)) {
+			if (empty($this->statements) && empty($this->options) && !isset($this->comment)) {
 				return '';
 			}
 
