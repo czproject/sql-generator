@@ -102,7 +102,11 @@
 			$output = $driver->escapeIdentifier($this->name) . ' ' . $this->type;
 
 			if (!empty($this->parameters)) {
-				$output .= '(' . implode(', ', $this->parameters) . ')';
+				$parameters = $this->parameters;
+				array_walk($parameters, function (&$value) use ($driver) {
+					$value = Helpers::formatValue($value, $driver);
+				});
+				$output .= '(' . implode(', ', $parameters) . ')';
 			}
 
 			foreach ($this->options as $option => $value) {

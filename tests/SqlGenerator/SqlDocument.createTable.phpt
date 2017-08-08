@@ -23,6 +23,8 @@ test(function () {
 	$contactTable->addColumn('surname', 'VARCHAR(100)');
 	$contactTable->addColumn('active', 'TINYINT', array(1), array('UNSIGNED' => NULL))
 		->setDefaultValue(TRUE);
+	$contactTable->addColumn('status', 'ENUM', array('new', 'verified'))
+		->setDefaultValue('new');
 	$contactTable->addColumn('created', 'DATETIME');
 	$contactTable->addColumn('removed', 'DATETIME')
 		->setNullable();
@@ -41,6 +43,7 @@ test(function () {
 		"\t`name` VARCHAR(100) NOT NULL COMMENT 'Client name',",
 		"\t`surname` VARCHAR(100) NOT NULL,",
 		"\t`active` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,",
+		"\t`status` ENUM('new', 'verified') NOT NULL DEFAULT 'new',",
 		"\t`created` DATETIME NOT NULL,",
 		"\t`removed` DATETIME NULL,",
 		"\tPRIMARY KEY (`id`),",
