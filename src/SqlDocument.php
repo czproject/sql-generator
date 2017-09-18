@@ -29,6 +29,21 @@
 
 
 		/**
+		 * @return string[]
+		 */
+		public function getSqlQueries(IDriver $driver)
+		{
+			$output = array();
+
+			foreach ($this->statements as $statement) {
+				$output[] = $statement->toSql($driver);
+			}
+
+			return $output;
+		}
+
+
+		/**
 		 * @return string
 		 */
 		public function toSql(IDriver $driver)
