@@ -1,6 +1,8 @@
 
 # CzProject\SqlGenerator
 
+[![Build Status](https://travis-ci.org/czproject/sql-generator.svg?branch=master)](https://travis-ci.org/czproject/sql-generator)
+
 
 Installation
 ------------
@@ -8,7 +10,7 @@ Installation
 [Download a latest package](https://github.com/czproject/sql-generator/releases) or use [Composer](http://getcomposer.org/):
 
 ```
-composer require [--dev] czproject/sql-generator
+composer require czproject/sql-generator
 ```
 
 `CzProject\SqlGenerator` requires PHP 5.4.0 or later.
