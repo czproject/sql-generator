@@ -27,10 +27,10 @@
 		/** @var string */
 		private $targetColumns;
 
-		/** @var int */
+		/** @var string */
 		private $onUpdateAction = self::ACTION_RESTRICT;
 
-		/** @var int */
+		/** @var string */
 		private $onDeleteAction = self::ACTION_RESTRICT;
 
 
@@ -64,7 +64,7 @@
 
 
 		/**
-		 * @param  int
+		 * @param  string
 		 * @return self
 		 */
 		public function setOnUpdateAction($onUpdateAction)
@@ -79,7 +79,7 @@
 
 
 		/**
-		 * @param  int
+		 * @param  string
 		 * @return self
 		 */
 		public function setOnDeleteAction($onDeleteAction)

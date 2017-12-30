@@ -18,10 +18,10 @@
 		/** @var string|NULL */
 		private $name;
 
-		/** @var int */
+		/** @var string */
 		private $type;
 
-		/** @var string[] */
+		/** @var IndexColumnDefinition[] */
 		private $columns = array();
 
 

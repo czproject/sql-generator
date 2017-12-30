@@ -16,7 +16,7 @@
 		/** @var string|NULL */
 		private $name;
 
-		/** @var int */
+		/** @var string */
 		private $order;
 
 		/** @var int|NULL */
@@ -37,7 +37,7 @@
 
 
 		/**
-		 * @param  int
+		 * @param  string
 		 * @return self
 		 */
 		private function setOrder($order)
