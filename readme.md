@@ -70,6 +70,45 @@ COMMENT 'Clients table.'
 ENGINE=InnoDB;
 ```
 
+
+## Statements
+
+There is few predefined statements:
+
+```php
+$sql->createTable($tableName);
+$sql->dropTable($tableName);
+$sql->renameTable($old, $new);
+$sql->alterTable($tableName);
+$sql->insert($tableName, $data);
+$sql->command($command); // for example $sql->command('SET NAMES "utf8"');
+$sql->comment($comment);
+```
+
+You can add custom statements:
+
+```php
+$sql->addStatement(new Statements\CreateTable($tableName));
+```
+
+Check if is SQL document empty:
+
+```php
+$sql->isEmpty();
+```
+
+Generate SQL:
+
+```php
+$sql->toSql($driver); // returns string
+$sql->getSqlQueries($driver); // returns string[]
+```
+
+## Supported database
+
+Currently is supported common SQL and MySQL.
+
+
 ------------------------------
 
 License: [New BSD License](license.md)
