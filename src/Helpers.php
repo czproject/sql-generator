@@ -40,4 +40,14 @@
 
 			throw new InvalidArgumentException("Unsupported value type.");
 		}
+
+
+		/**
+		 * @param  string
+		 * @return string
+		 */
+		public static function normalizeNewLines($s)
+		{
+			return str_replace(array("\r\n", "\r"), "\n", $s);
+		}
 	}

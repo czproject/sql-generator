@@ -132,4 +132,16 @@
 			$this->addStatement($statement);
 			return $statement;
 		}
+
+
+		/**
+		 * @param  string
+		 * @return Statements\Comment
+		 */
+		public function comment($comment)
+		{
+			$statement = new Statements\Comment($comment);
+			$this->addStatement($statement);
+			return $statement;
+		}
 	}
