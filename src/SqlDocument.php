@@ -120,4 +120,16 @@
 			$this->addStatement($statement);
 			return $statement;
 		}
+
+
+		/**
+		 * @param  string
+		 * @return Statements\SqlCommand
+		 */
+		public function command($command)
+		{
+			$statement = new Statements\SqlCommand($command);
+			$this->addStatement($statement);
+			return $statement;
+		}
 	}
