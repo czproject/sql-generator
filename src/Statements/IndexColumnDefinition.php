@@ -38,7 +38,7 @@
 
 		/**
 		 * @param  string
-		 * @return self
+		 * @return static
 		 */
 		private function setOrder($order)
 		{

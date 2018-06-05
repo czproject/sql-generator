@@ -28,7 +28,7 @@
 
 		/**
 		 * @param  int
-		 * @return self
+		 * @return static
 		 */
 		public function setOnUpdateAction($onUpdateAction)
 		{
@@ -39,7 +39,7 @@
 
 		/**
 		 * @param  int
-		 * @return self
+		 * @return static
 		 */
 		public function setOnDeleteAction($onDeleteAction)
 		{

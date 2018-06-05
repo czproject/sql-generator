@@ -28,7 +28,7 @@
 		 * @param  string
 		 * @param  string
 		 * @param  int|NULL
-		 * @return self
+		 * @return static
 		 */
 		public function addColumn($column, $order = IndexColumnDefinition::ASC, $length = NULL)
 		{

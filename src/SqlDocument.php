@@ -10,7 +10,7 @@
 
 
 		/**
-		 * @return self
+		 * @return static
 		 */
 		public function addStatement(IStatement $statement)
 		{

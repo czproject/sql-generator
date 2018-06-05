@@ -65,7 +65,7 @@
 
 		/**
 		 * @param  string
-		 * @return self
+		 * @return static
 		 */
 		public function setOnUpdateAction($onUpdateAction)
 		{
@@ -80,7 +80,7 @@
 
 		/**
 		 * @param  string
-		 * @return self
+		 * @return static
 		 */
 		public function setOnDeleteAction($onDeleteAction)
 		{

@@ -87,7 +87,7 @@
 
 		/**
 		 * @param  string|NULL
-		 * @return self
+		 * @return static
 		 */
 		public function setComment($comment)
 		{
@@ -99,7 +99,7 @@
 		/**
 		 * @param  string
 		 * @param  string
-		 * @return self
+		 * @return static
 		 */
 		public function setOption($name, $value)
 		{

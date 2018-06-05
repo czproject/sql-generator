@@ -52,7 +52,7 @@
 
 		/**
 		 * @param  bool
-		 * @return self
+		 * @return static
 		 */
 		public function setNullable($nullable = TRUE)
 		{
@@ -63,7 +63,7 @@
 
 		/**
 		 * @param  scalar|NULL
-		 * @return self
+		 * @return static
 		 */
 		public function setDefaultValue($defaultValue)
 		{
@@ -74,7 +74,7 @@
 
 		/**
 		 * @param  bool
-		 * @return self
+		 * @return static
 		 */
 		public function setAutoIncrement($autoIncrement = TRUE)
 		{
@@ -85,7 +85,7 @@
 
 		/**
 		 * @param  string|NULL
-		 * @return self
+		 * @return static
 		 */
 		public function setComment($comment)
 		{
