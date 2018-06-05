@@ -13,46 +13,60 @@ test(function () {
 	$sql = new SqlDocument;
 	$driver = new Drivers\MysqlDriver;
 
-	$contactTable = $sql->createTable('contact')
-		->setComment('Clients table.')
-		->setOption('ENGINE', 'InnoDB');
-	$contactTable->addColumn('id', 'INT', NULL, array('UNSIGNED' => NULL))
-		->setAutoIncrement();
-	$contactTable->addColumn('name', 'VARCHAR(100)')
-		->setComment('Client name');
-	$contactTable->addColumn('surname', 'VARCHAR(100)');
-	$contactTable->addColumn('active', 'TINYINT', array(1), array('UNSIGNED' => NULL))
-		->setDefaultValue(TRUE);
-	$contactTable->addColumn('status', 'ENUM', array('new', 'verified'))
-		->setDefaultValue('new');
-	$contactTable->addColumn('created', 'DATETIME');
-	$contactTable->addColumn('removed', 'DATETIME')
-		->setNullable();
+	$contactTable = $sql->alterTable('contact');
+	$contactTable->setOption('ENGINE', 'InnoDB');
 
+	// columns
+	$contactTable->addColumn('active', 'TINYINT', array(1), array('UNSIGNED' => NULL))
+		->setDefaultValue(TRUE)
+		->setNullable()
+		->setComment('Contact status')
+		->moveAfterColumn('name');
+
+	$contactTable->addColumn('id', 'INT')
+		->setAutoIncrement()
+		->moveToFirstPosition();
+
+	$contactTable->modifyColumn('name', 'VARCHAR(200)')
+		->setDefaultValue('XYZ')
+		->setComment('Name of contact')
+		->setNullable()
+		->moveAfterColumn('id');
+
+	$contactTable->modifyColumn('id', 'INT')
+		->setAutoIncrement()
+		->moveToFirstPosition();
+
+	$contactTable->dropColumn('removed');
+
+	// indexes
 	$contactTable->addIndex(NULL, IndexDefinition::TYPE_PRIMARY)
 		->addColumn('id');
 
-	$contactTable->addIndex('name_surname', IndexDefinition::TYPE_UNIQUE)
-		->addColumn('name', 'ASC', 100)
-		->addColumn('surname', 'DESC', 100);
+	$contactTable->dropIndex('name');
 
-	$contactTable->addForeignKey('fk_creator', 'creator_id', 'user', 'id');
+	// foreign keys
+	$contactTable->dropForeignKey('fk_creator');
+	$contactTable->addForeignKey('fk_creator', 'creator_id', 'user', 'id')
+		->setOnUpdateAction('NO ACTION')
+		->setOnDeleteAction('NO ACTION');
+
+	// comment
+	$contactTable->setComment('Table of contacts.');
 
 	Assert::same(implode("\n", array(
 		'',
-		'CREATE TABLE `contact` (',
-		"\t`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,",
-		"\t`name` VARCHAR(100) NOT NULL COMMENT 'Client name',",
-		"\t`surname` VARCHAR(100) NOT NULL,",
-		"\t`active` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,",
-		"\t`status` ENUM('new', 'verified') NOT NULL DEFAULT 'new',",
-		"\t`created` DATETIME NOT NULL,",
-		"\t`removed` DATETIME NULL,",
-		"\tPRIMARY KEY (`id`),",
-		"\tUNIQUE KEY `name_surname` (`name` (100), `surname` (100) DESC),",
-		"\tCONSTRAINT `fk_creator` FOREIGN KEY (`creator_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT",
-		')',
-		'COMMENT \'Clients table.\'',
+		'ALTER TABLE `contact`',
+		"ADD COLUMN `active` TINYINT(1) UNSIGNED NULL DEFAULT 1 COMMENT 'Contact status' AFTER `name`,",
+		"ADD COLUMN `id` INT NOT NULL AUTO_INCREMENT FIRST,",
+		"MODIFY COLUMN `name` VARCHAR(200) NULL DEFAULT 'XYZ' COMMENT 'Name of contact' AFTER `id`,",
+		"MODIFY COLUMN `id` INT NOT NULL AUTO_INCREMENT FIRST,",
+		"DROP COLUMN `removed`,",
+		"ADD PRIMARY KEY (`id`),",
+		"DROP INDEX `name`,",
+		"DROP FOREIGN KEY `fk_creator`,",
+		"ADD CONSTRAINT `fk_creator` FOREIGN KEY (`creator_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,",
+		'COMMENT \'Table of contacts.\',',
 		'ENGINE=InnoDB;',
 		'',
 	)), $sql->toSql($driver));
