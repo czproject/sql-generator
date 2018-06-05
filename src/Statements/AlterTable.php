@@ -80,7 +80,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string|NULL
 		 * @return DropIndex
 		 */
 		public function dropIndex($index)
