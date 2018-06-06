@@ -3,6 +3,7 @@
 	namespace CzProject\SqlGenerator\Statements;
 
 	use CzProject\SqlGenerator\DuplicateException;
+	use CzProject\SqlGenerator\Drivers;
 	use CzProject\SqlGenerator\Helpers;
 	use CzProject\SqlGenerator\IDriver;
 	use CzProject\SqlGenerator\IStatement;
@@ -109,12 +110,25 @@
 				$output .= '(' . implode(', ', $parameters) . ')';
 			}
 
-			foreach ($this->options as $option => $value) {
-				$output .= ' ' . $option;
+			$options = $this->options;
+			$specialOptions = array();
 
-				if ($value !== NULL) {
-					$output .= ' ' . $value;
+			if ($driver instanceof Drivers\MysqlDriver) {
+				$specialOptions = array(
+					'CHARACTER SET',
+					'COLLATE',
+				);
+			}
+
+			foreach ($specialOptions as $option) {
+				if (isset($options[$option])) {
+					$output .= ' ' . self::formatOption($option, $options[$option]);
+					unset($options[$option]);
 				}
+			}
+
+			foreach ($options as $option => $value) {
+				$output .= ' ' . self::formatOption($option, $value);
 			}
 
 			$output .= ' ' . ($this->nullable ? 'NULL' : 'NOT NULL');
@@ -132,5 +146,16 @@
 			}
 
 			return $output;
+		}
+
+
+		/**
+		 * @param  string
+		 * @param  string|NULL
+		 * @return string
+		 */
+		private static function formatOption($name, $value)
+		{
+			return $name . ($value !== NULL ? (' ' . $value) : '');
 		}
 	}
