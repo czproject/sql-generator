@@ -69,6 +69,30 @@
 
 		/**
 		 * @param  string
+		 * @param  IDriver
+		 * @return void
+		 * @throws IOException
+		 */
+		public function save($file, IDriver $driver)
+		{
+			// create directory
+			$dir = dirname($file);
+
+			if (!is_dir($dir) && !@mkdir($dir, 0777, TRUE) && !is_dir($dir)) { // @ - dir may already exist
+				throw new IOException("Unable to create directory '$dir'.");
+			}
+
+			// write file
+			$content = $this->toSql($driver);
+
+			if (@file_put_contents($file, $content) === FALSE) { // @ is escalated to exception
+				throw new IOException("Unable to write file '$file'.");
+			}
+		}
+
+
+		/**
+		 * @param  string
 		 * @param  array
 		 * @return Statements\Insert
 		 */

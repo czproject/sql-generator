@@ -100,6 +100,7 @@ Generate SQL:
 ```php
 $sql->toSql($driver); // returns string
 $sql->getSqlQueries($driver); // returns string[]
+$sql->save($file, $driver); // saves SQL into file
 ```
 
 ## Supported database

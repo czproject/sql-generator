@@ -18,6 +18,11 @@
 	}
 
 
+	class IOException extends Exception
+	{
+	}
+
+
 	class NotImplementedException extends Exception
 	{
 	}
