@@ -55,7 +55,6 @@ test(function () {
 	$contactTable->setComment('Table of contacts.');
 
 	Assert::same(implode("\n", array(
-		'',
 		'ALTER TABLE `contact`',
 		"ADD COLUMN `active` TINYINT(1) UNSIGNED NULL DEFAULT 1 COMMENT 'Contact status' AFTER `name`,",
 		"ADD COLUMN `id` INT NOT NULL AUTO_INCREMENT FIRST,",

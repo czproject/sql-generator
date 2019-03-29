@@ -39,7 +39,6 @@ test(function () {
 	$contactTable->addForeignKey('fk_creator', 'creator_id', 'user', 'id');
 
 	Assert::same(implode("\n", array(
-		'',
 		'CREATE TABLE `contact` (',
 		"\t`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,",
 		"\t`name` VARCHAR(100) NOT NULL COMMENT 'Client name',",

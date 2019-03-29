@@ -14,7 +14,7 @@ test(function () {
 
 	$sql->renameTable('contact', 'client');
 
-	Assert::same("\nRENAME TABLE `contact` TO `client`;\n", $sql->toSql(new Drivers\MysqlDriver));
+	Assert::same("RENAME TABLE `contact` TO `client`;\n", $sql->toSql(new Drivers\MysqlDriver));
 
 	Assert::exception(function () use ($sql) {
 

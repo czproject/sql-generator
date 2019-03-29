@@ -21,7 +21,6 @@ test(function () {
 	));
 
 	Assert::same(implode('', array(
-		"\n",
 		'INSERT INTO `contact` (',
 		implode(', ', array(
 			'`name`',

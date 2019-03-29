@@ -49,9 +49,16 @@
 		public function toSql(IDriver $driver)
 		{
 			$output = '';
+			$first = TRUE;
 
 			foreach ($this->statements as $statement) {
-				$output .= "\n";
+				if ($first) {
+					$first = FALSE;
+
+				} else {
+					$output .= "\n";
+				}
+
 				$output .= $statement->toSql($driver);
 				$output .= "\n";
 			}

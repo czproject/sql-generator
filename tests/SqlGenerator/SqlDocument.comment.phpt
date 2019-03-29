@@ -17,7 +17,6 @@ test(function () {
 	$sql->comment("\tblock comment #1\nblock comment #2\n\nblock comment #3\n");
 
 	Assert::same(implode("\n", array(
-		'',
 		'-- inline comment',
 		'',
 		'-- block comment #1',

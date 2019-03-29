@@ -14,6 +14,6 @@ test(function () {
 
 	$sql->dropTable('contact');
 
-	Assert::same("\nDROP TABLE `contact`;\n", $sql->toSql($driver));
+	Assert::same("DROP TABLE `contact`;\n", $sql->toSql($driver));
 
 });
