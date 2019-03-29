@@ -14,7 +14,7 @@
 		/**
 		 * @param  mixed
 		 * @return string
-		 * @throws Exception
+		 * @throws InvalidArgumentException
 		 * @see    https://api.dibiphp.com/3.0/source-Dibi.Translator.php.html#174
 		 */
 		public static function formatValue($value, IDriver $driver)
