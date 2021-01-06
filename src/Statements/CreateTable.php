@@ -75,7 +75,7 @@
 		 * @param  string[]|string
 		 * @return ForeignKeyDefinition
 		 */
-		public function addForeignKey($name, $columns = [], $targetTable, $targetColumns = [])
+		public function addForeignKey($name, $columns, $targetTable, $targetColumns)
 		{
 			if (isset($this->foreignKeys[$name])) {
 				throw new DuplicateException("Foreign key '$name' already exists.");

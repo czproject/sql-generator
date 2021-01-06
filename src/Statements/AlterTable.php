@@ -73,7 +73,7 @@
 		 * @param  string
 		 * @return AddIndex
 		 */
-		public function addIndex($name = NULL, $type)
+		public function addIndex($name, $type)
 		{
 			return $this->statements[] = new AddIndex($name, $type);
 		}
@@ -96,7 +96,7 @@
 		 * @param  string[]|string
 		 * @return AddForeignKey
 		 */
-		public function addForeignKey($name, $columns = [], $targetTable, $targetColumns = [])
+		public function addForeignKey($name, $columns, $targetTable, $targetColumns)
 		{
 			return $this->statements[] = new AddForeignKey($name, $columns, $targetTable, $targetColumns);
 		}

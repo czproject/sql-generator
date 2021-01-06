@@ -40,7 +40,7 @@
 		 * @param  string
 		 * @param  string[]|string
 		 */
-		public function __construct($name, $columns = [], $targetTable, $targetColumns = [])
+		public function __construct($name, $columns, $targetTable, $targetColumns)
 		{
 			$this->name = $name;
 			$this->targetTable = $targetTable;

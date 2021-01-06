@@ -29,7 +29,7 @@
 		 * @param  string|NULL
 		 * @param  string
 		 */
-		public function __construct($name = NULL, $type)
+		public function __construct($name, $type)
 		{
 			$this->name = $name;
 			$this->setType($type);
