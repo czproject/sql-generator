@@ -14,7 +14,7 @@ function test($cb)
 function prepareTempDir()
 {
 	$tempDir = __DIR__ . '/tmp/' . getmypid();
-	mkdir(dirname($tempDir), 0777, TRUE);
+	@mkdir(dirname($tempDir), 0777, TRUE);
 	Tester\Helpers::purge($tempDir);
 	return $tempDir;
 }
