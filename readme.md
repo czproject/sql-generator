@@ -1,7 +1,7 @@
 
 # CzProject\SqlGenerator
 
-[![Build Status](https://travis-ci.org/czproject/sql-generator.svg?branch=master)](https://travis-ci.org/czproject/sql-generator)
+[![Tests Status](https://github.com/czproject/sql-generator/workflows/Tests/badge.svg)](https://github.com/czproject/sql-generator/actions)
 
 <a href="https://www.patreon.com/bePatron?u=9680759"><img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" alt="Become a Patron!" height="35"></a>
 <a href="https://www.paypal.me/janpecha/1eur"><img src="https://buymecoffee.intm.org/img/button-paypal-white.png" alt="Buy me a coffee" height="35"></a>
