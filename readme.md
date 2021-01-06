@@ -15,7 +15,7 @@
 composer require czproject/sql-generator
 ```
 
-`CzProject\SqlGenerator` requires PHP 5.4.0 or later.
+`CzProject\SqlGenerator` requires PHP 5.6.0 or later.
 
 
 ## Usage
