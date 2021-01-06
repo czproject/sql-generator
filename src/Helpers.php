@@ -48,6 +48,6 @@
 		 */
 		public static function normalizeNewLines($s)
 		{
-			return str_replace(array("\r\n", "\r"), "\n", $s);
+			return str_replace(["\r\n", "\r"], "\n", $s);
 		}
 	}

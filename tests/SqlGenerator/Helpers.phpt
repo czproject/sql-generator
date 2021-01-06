@@ -26,6 +26,6 @@ test(function () {
 	Assert::same('\'2017-01-01 21:12:00\'', Helpers::formatValue(new \DateTime('2017-01-01 21:12:00', new \DateTimeZone('UTC')), $driver));
 
 	Assert::exception(function () use ($driver) {
-		Helpers::formatValue(array(), $driver);
+		Helpers::formatValue([], $driver);
 	}, 'CzProject\SqlGenerator\InvalidArgumentException', 'Unsupported value type.');
 });

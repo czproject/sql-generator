@@ -15,9 +15,9 @@ test(function () {
 
 	$sql->command('SET NAMES "utf8mb4"');
 
-	Assert::same(implode("\n", array(
+	Assert::same(implode("\n", [
 		'SET NAMES "utf8mb4";',
 		'',
-	)), $sql->toSql($driver));
+	]), $sql->toSql($driver));
 
 });

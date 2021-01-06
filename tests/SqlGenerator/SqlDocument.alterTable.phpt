@@ -17,7 +17,7 @@ test(function () {
 	$contactTable->setOption('ENGINE', 'InnoDB');
 
 	// columns
-	$contactTable->addColumn('active', 'TINYINT', array(1), array('UNSIGNED' => NULL))
+	$contactTable->addColumn('active', 'TINYINT', [1], ['UNSIGNED' => NULL])
 		->setDefaultValue(TRUE)
 		->setNullable()
 		->setComment('Contact status')
@@ -54,7 +54,7 @@ test(function () {
 	// comment
 	$contactTable->setComment('Table of contacts.');
 
-	Assert::same(implode("\n", array(
+	Assert::same(implode("\n", [
 		'ALTER TABLE `contact`',
 		"ADD COLUMN `active` TINYINT(1) UNSIGNED NULL DEFAULT 1 COMMENT 'Contact status' AFTER `name`,",
 		"ADD COLUMN `id` INT NOT NULL AUTO_INCREMENT FIRST,",
@@ -68,7 +68,7 @@ test(function () {
 		'COMMENT \'Table of contacts.\',',
 		'ENGINE=InnoDB;',
 		'',
-	)), $sql->toSql($driver));
+	]), $sql->toSql($driver));
 
 });
 

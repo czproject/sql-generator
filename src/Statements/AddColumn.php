@@ -26,7 +26,7 @@
 		 * @param  array
 		 * @param  array  [name => value]
 		 */
-		public function __construct($name, $type, array $parameters = NULL, array $options = array())
+		public function __construct($name, $type, array $parameters = NULL, array $options = [])
 		{
 			$this->definition = new ColumnDefinition($name, $type, $parameters, $options);
 		}

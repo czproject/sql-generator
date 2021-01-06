@@ -20,7 +20,7 @@
 		 * @param  string
 		 * @param  string[]|string
 		 */
-		public function __construct($name, $columns = array(), $targetTable, $targetColumns = array())
+		public function __construct($name, $columns = [], $targetTable, $targetColumns = [])
 		{
 			$this->definition = new ForeignKeyDefinition($name, $columns, $targetTable, $targetColumns);
 		}

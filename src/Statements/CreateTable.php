@@ -14,19 +14,19 @@
 		private $tableName;
 
 		/** @var array  [name => ColumnDefinition] */
-		private $columns = array();
+		private $columns = [];
 
 		/** @var array  [name => IndexDefinition] */
-		private $indexes = array();
+		private $indexes = [];
 
 		/** @var array  [name => ForeignKeyDefinition] */
-		private $foreignKeys = array();
+		private $foreignKeys = [];
 
 		/** @var string|NULL */
 		private $comment;
 
 		/** @var array  [name => value] */
-		private $options = array();
+		private $options = [];
 
 
 		/**
@@ -43,7 +43,7 @@
 		 * @param  string
 		 * @return ColumnDefinition
 		 */
-		public function addColumn($name, $type, array $parameters = NULL, array $options = array())
+		public function addColumn($name, $type, array $parameters = NULL, array $options = [])
 		{
 			if (isset($this->columns[$name])) {
 				throw new DuplicateException("Column '$name' already exists.");
@@ -75,7 +75,7 @@
 		 * @param  string[]|string
 		 * @return ForeignKeyDefinition
 		 */
-		public function addForeignKey($name, $columns = array(), $targetTable, $targetColumns = array())
+		public function addForeignKey($name, $columns = [], $targetTable, $targetColumns = [])
 		{
 			if (isset($this->foreignKeys[$name])) {
 				throw new DuplicateException("Foreign key '$name' already exists.");

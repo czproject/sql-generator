@@ -19,10 +19,10 @@ test(function () {
 	$sql->command('SET NAMES "utf8mb4"');
 	$sql->save($file, $driver);
 
-	Assert::same(implode("\n", array(
+	Assert::same(implode("\n", [
 		'SET NAMES "utf8mb4";',
 		'',
-	)), file_get_contents($file));
+	]), file_get_contents($file));
 
 });
 

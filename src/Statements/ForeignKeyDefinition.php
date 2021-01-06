@@ -40,13 +40,13 @@
 		 * @param  string
 		 * @param  string[]|string
 		 */
-		public function __construct($name, $columns = array(), $targetTable, $targetColumns = array())
+		public function __construct($name, $columns = [], $targetTable, $targetColumns = [])
 		{
 			$this->name = $name;
 			$this->targetTable = $targetTable;
 
 			if (!is_array($columns)) {
-				$columns = array($columns);
+				$columns = [$columns];
 			}
 
 			foreach ($columns as $column) {
@@ -54,7 +54,7 @@
 			}
 
 			if (!is_array($targetColumns)) {
-				$targetColumns = array($targetColumns);
+				$targetColumns = [$targetColumns];
 			}
 
 			foreach ($targetColumns as $targetColumn) {
@@ -100,9 +100,9 @@
 		{
 			$output = 'CONSTRAINT ' . $driver->escapeIdentifier($this->name);
 			$output .= ' FOREIGN KEY (';
-			$output .= implode(', ', array_map(array($driver, 'escapeIdentifier'), $this->columns));
+			$output .= implode(', ', array_map([$driver, 'escapeIdentifier'], $this->columns));
 			$output .= ') REFERENCES ' . $driver->escapeIdentifier($this->targetTable) . ' (';
-			$output .= implode(', ', array_map(array($driver, 'escapeIdentifier'), $this->targetColumns));
+			$output .= implode(', ', array_map([$driver, 'escapeIdentifier'], $this->targetColumns));
 			$output .= ')';
 			$output .= ' ON DELETE ' . $this->onDeleteAction;
 			$output .= ' ON UPDATE ' . $this->onUpdateAction;

@@ -6,7 +6,7 @@
 	class SqlDocument
 	{
 		/** @var IStatement[] */
-		private $statements = array();
+		private $statements = [];
 
 
 		/**
@@ -33,7 +33,7 @@
 		 */
 		public function getSqlQueries(IDriver $driver)
 		{
-			$output = array();
+			$output = [];
 
 			foreach ($this->statements as $statement) {
 				$output[] = $statement->toSql($driver);

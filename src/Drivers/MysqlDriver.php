@@ -28,8 +28,8 @@
 			// https://dev.mysql.com/doc/refman/5.5/en/string-literals.html
 			// http://us3.php.net/manual/en/function.mysql-real-escape-string.php#101248
 			return '\'' . str_replace(
-				array('\\', "\0", "\n", "\r", "\t", "'", '"', "\x1a"),
-				array('\\\\', '\\0', '\\n', '\\r', '\\t', "\\'", '\\"', '\\Z'),
+				['\\', "\0", "\n", "\r", "\t", "'", '"', "\x1a"],
+				['\\\\', '\\0', '\\n', '\\r', '\\t', "\\'", '\\"', '\\Z'],
 				$value
 			) . '\'';
 		}

@@ -16,14 +16,14 @@ test(function () {
 	$contactTable = $sql->createTable('contact')
 		->setComment('Clients table.')
 		->setOption('ENGINE', 'InnoDB');
-	$contactTable->addColumn('id', 'INT', NULL, array('UNSIGNED' => NULL))
+	$contactTable->addColumn('id', 'INT', NULL, ['UNSIGNED' => NULL])
 		->setAutoIncrement();
 	$contactTable->addColumn('name', 'VARCHAR(100)')
 		->setComment('Client name');
 	$contactTable->addColumn('surname', 'VARCHAR(100)');
-	$contactTable->addColumn('active', 'TINYINT', array(1), array('UNSIGNED' => NULL))
+	$contactTable->addColumn('active', 'TINYINT', [1], ['UNSIGNED' => NULL])
 		->setDefaultValue(TRUE);
-	$contactTable->addColumn('status', 'ENUM', array('new', 'verified'))
+	$contactTable->addColumn('status', 'ENUM', ['new', 'verified'])
 		->setDefaultValue('new');
 	$contactTable->addColumn('created', 'DATETIME');
 	$contactTable->addColumn('removed', 'DATETIME')
@@ -38,7 +38,7 @@ test(function () {
 
 	$contactTable->addForeignKey('fk_creator', 'creator_id', 'user', 'id');
 
-	Assert::same(implode("\n", array(
+	Assert::same(implode("\n", [
 		'CREATE TABLE `contact` (',
 		"\t`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,",
 		"\t`name` VARCHAR(100) NOT NULL COMMENT 'Client name',",
@@ -54,7 +54,7 @@ test(function () {
 		'COMMENT \'Clients table.\'',
 		'ENGINE=InnoDB;',
 		'',
-	)), $sql->toSql($driver));
+	]), $sql->toSql($driver));
 
 });
 

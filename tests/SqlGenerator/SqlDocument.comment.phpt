@@ -16,7 +16,7 @@ test(function () {
 	$sql->comment('inline comment');
 	$sql->comment("\tblock comment #1\nblock comment #2\n\nblock comment #3\n");
 
-	Assert::same(implode("\n", array(
+	Assert::same(implode("\n", [
 		'-- inline comment',
 		'',
 		'-- block comment #1',
@@ -24,6 +24,6 @@ test(function () {
 		'-- ',
 		'-- block comment #3',
 		'',
-	)), $sql->toSql($driver));
+	]), $sql->toSql($driver));
 
 });

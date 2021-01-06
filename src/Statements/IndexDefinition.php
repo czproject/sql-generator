@@ -22,7 +22,7 @@
 		private $type;
 
 		/** @var IndexColumnDefinition[] */
-		private $columns = array();
+		private $columns = [];
 
 
 		/**

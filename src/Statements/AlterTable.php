@@ -14,13 +14,13 @@
 		private $tableName;
 
 		/** @var IStatement[] */
-		private $statements = array();
+		private $statements = [];
 
 		/** @var string|NULL */
 		private $comment;
 
 		/** @var array  [name => value] */
-		private $options = array();
+		private $options = [];
 
 
 		/**
@@ -39,7 +39,7 @@
 		 * @param  array  [name => value]
 		 * @return AddColumn
 		 */
-		public function addColumn($name, $type, array $parameters = NULL, array $options = array())
+		public function addColumn($name, $type, array $parameters = NULL, array $options = [])
 		{
 			return $this->statements[] = new AddColumn($name, $type, $parameters, $options);
 		}
@@ -62,7 +62,7 @@
 		 * @param  array  [name => value]
 		 * @return ModifyColumn
 		 */
-		public function modifyColumn($name, $type, array $parameters = NULL, array $options = array())
+		public function modifyColumn($name, $type, array $parameters = NULL, array $options = [])
 		{
 			return $this->statements[] = new ModifyColumn($name, $type, $parameters, $options);
 		}
@@ -96,7 +96,7 @@
 		 * @param  string[]|string
 		 * @return AddForeignKey
 		 */
-		public function addForeignKey($name, $columns = array(), $targetTable, $targetColumns = array())
+		public function addForeignKey($name, $columns = [], $targetTable, $targetColumns = [])
 		{
 			return $this->statements[] = new AddForeignKey($name, $columns, $targetTable, $targetColumns);
 		}

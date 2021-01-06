@@ -12,32 +12,32 @@ test(function () {
 	$sql = new SqlDocument;
 	$driver = new Drivers\MysqlDriver;
 
-	$sql->insert('contact', array(
+	$sql->insert('contact', [
 		'name' => 'Harry',
 		'surname' => 'Potter',
 		'active' => FALSE,
 		'created' => new DateTime('2016-12-31 16:12:31', new DateTimeZone('UTC')),
 		'removed' => NULL,
-	));
+	]);
 
-	Assert::same(implode('', array(
+	Assert::same(implode('', [
 		'INSERT INTO `contact` (',
-		implode(', ', array(
+		implode(', ', [
 			'`name`',
 			'`surname`',
 			'`active`',
 			'`created`',
 			'`removed`',
-		)),
+		]),
 		")\nVALUES (",
-		implode(', ', array(
+		implode(', ', [
 			"'Harry'",
 			"'Potter'",
 			'0',
 			"'2016-12-31 16:12:31'",
 			'NULL',
-		)),
+		]),
 		");\n",
-	)), $sql->toSql($driver));
+	]), $sql->toSql($driver));
 
 });

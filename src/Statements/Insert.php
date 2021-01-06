@@ -36,7 +36,7 @@
 
 			// columns
 			$output .= ' (';
-			$output .= implode(', ', array_map(array($driver, 'escapeIdentifier'), array_keys($this->data)));
+			$output .= implode(', ', array_map([$driver, 'escapeIdentifier'], array_keys($this->data)));
 			$output .= ")\nVALUES (";
 
 			// data

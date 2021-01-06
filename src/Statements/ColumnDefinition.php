@@ -18,10 +18,10 @@
 		private $type;
 
 		/** @var array */
-		private $parameters = array();
+		private $parameters = [];
 
 		/** @var array  [name => value] */
-		private $options = array();
+		private $options = [];
 
 		/** @var bool */
 		private $nullable = FALSE;
@@ -42,11 +42,11 @@
 		 * @param  array
 		 * @param  array  [name => value]
 		 */
-		public function __construct($name, $type, array $parameters = NULL, array $options = array())
+		public function __construct($name, $type, array $parameters = NULL, array $options = [])
 		{
 			$this->name = $name;
 			$this->type = $type;
-			$this->parameters = ($parameters !== NULL) ? $parameters : array();
+			$this->parameters = ($parameters !== NULL) ? $parameters : [];
 			$this->options = $options;
 		}
 
@@ -111,13 +111,13 @@
 			}
 
 			$options = $this->options;
-			$specialOptions = array();
+			$specialOptions = [];
 
 			if ($driver instanceof Drivers\MysqlDriver) {
-				$specialOptions = array(
+				$specialOptions = [
 					'CHARACTER SET',
 					'COLLATE',
-				);
+				];
 			}
 
 			foreach ($specialOptions as $option) {
