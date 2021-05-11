@@ -15,7 +15,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $tableName
 		 */
 		public function __construct($tableName)
 		{
@@ -23,9 +23,6 @@
 		}
 
 
-		/**
-		 * @return string
-		 */
 		public function toSql(IDriver $driver)
 		{
 			return 'DROP TABLE ' . $driver->escapeIdentifier($this->tableName) . ';';

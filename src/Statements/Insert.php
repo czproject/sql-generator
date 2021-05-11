@@ -12,13 +12,13 @@
 		/** @var string */
 		private $tableName;
 
-		/** @var array */
+		/** @var array<string, mixed> */
 		private $data;
 
 
 		/**
-		 * @param  string
-		 * @param  array
+		 * @param  string $tableName
+		 * @param  array<string, mixed> $data
 		 */
 		public function __construct($tableName, array $data)
 		{
@@ -27,9 +27,6 @@
 		}
 
 
-		/**
-		 * @return string
-		 */
 		public function toSql(IDriver $driver)
 		{
 			$output = 'INSERT INTO ' . $driver->escapeIdentifier($this->tableName);

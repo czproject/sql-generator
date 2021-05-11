@@ -68,8 +68,7 @@
 
 
 		/**
-		 * @param  string
-		 * @param  IDriver
+		 * @param  string $file
 		 * @return void
 		 * @throws IOException
 		 */
@@ -92,8 +91,8 @@
 
 
 		/**
-		 * @param  string
-		 * @param  array
+		 * @param  string $tableName
+		 * @param  array<string, mixed> $data
 		 * @return Statements\Insert
 		 */
 		public function insert($tableName, array $data)
@@ -105,7 +104,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $tableName
 		 * @return Statements\CreateTable
 		 */
 		public function createTable($tableName)
@@ -117,7 +116,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $tableName
 		 * @return Statements\DropTable
 		 */
 		public function dropTable($tableName)
@@ -129,8 +128,8 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string
+		 * @param  string $oldTable
+		 * @param  string $newTable
 		 * @return Statements\RenameTable
 		 */
 		public function renameTable($oldTable, $newTable)
@@ -142,7 +141,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $tableName
 		 * @return Statements\AlterTable
 		 */
 		public function alterTable($tableName)
@@ -154,7 +153,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $command
 		 * @return Statements\SqlCommand
 		 */
 		public function command($command)
@@ -166,7 +165,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $comment
 		 * @return Statements\Comment
 		 */
 		public function comment($comment)

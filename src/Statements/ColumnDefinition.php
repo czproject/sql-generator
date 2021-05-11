@@ -17,16 +17,16 @@
 		/** @var string */
 		private $type;
 
-		/** @var array */
+		/** @var array<int|float|string> */
 		private $parameters = [];
 
-		/** @var array  [name => value] */
+		/** @var array<string, string>  [name => value] */
 		private $options = [];
 
 		/** @var bool */
 		private $nullable = FALSE;
 
-		/** @var scalar|NULL */
+		/** @var mixed|NULL */
 		private $defaultValue;
 
 		/** @var bool */
@@ -37,10 +37,10 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string
-		 * @param  array
-		 * @param  array  [name => value]
+		 * @param  string $name
+		 * @param  string $type
+		 * @param  array<int|float|string>|NULL $parameters
+		 * @param  array<string, string> $options  [name => value]
 		 */
 		public function __construct($name, $type, array $parameters = NULL, array $options = [])
 		{
@@ -52,7 +52,7 @@
 
 
 		/**
-		 * @param  bool
+		 * @param  bool $nullable
 		 * @return static
 		 */
 		public function setNullable($nullable = TRUE)
@@ -63,7 +63,7 @@
 
 
 		/**
-		 * @param  scalar|NULL
+		 * @param  mixed|NULL $defaultValue
 		 * @return static
 		 */
 		public function setDefaultValue($defaultValue)
@@ -74,7 +74,7 @@
 
 
 		/**
-		 * @param  bool
+		 * @param  bool $autoIncrement
 		 * @return static
 		 */
 		public function setAutoIncrement($autoIncrement = TRUE)
@@ -85,7 +85,7 @@
 
 
 		/**
-		 * @param  string|NULL
+		 * @param  string|NULL $comment
 		 * @return static
 		 */
 		public function setComment($comment)
@@ -95,9 +95,6 @@
 		}
 
 
-		/**
-		 * @return string
-		 */
 		public function toSql(IDriver $driver)
 		{
 			$output = $driver->escapeIdentifier($this->name) . ' ' . $this->type;
@@ -150,8 +147,8 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string|NULL
+		 * @param  string $name
+		 * @param  string|NULL $value
 		 * @return string
 		 */
 		private static function formatOption($name, $value)

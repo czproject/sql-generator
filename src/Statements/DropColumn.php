@@ -15,7 +15,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $column
 		 */
 		public function __construct($column)
 		{
@@ -23,9 +23,6 @@
 		}
 
 
-		/**
-		 * @return string
-		 */
 		public function toSql(IDriver $driver)
 		{
 			return 'DROP COLUMN ' . $driver->escapeIdentifier($this->column);

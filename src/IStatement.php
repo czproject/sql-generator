@@ -5,5 +5,8 @@
 
 	interface IStatement
 	{
+		/**
+		 * @return string
+		 */
 		function toSql(IDriver $driver);
 	}

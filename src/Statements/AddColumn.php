@@ -21,10 +21,10 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string
-		 * @param  array
-		 * @param  array  [name => value]
+		 * @param  string $name
+		 * @param  string $type
+		 * @param  array<int|float|string> $parameters
+		 * @param  array<string, string> $options  [name => value]
 		 */
 		public function __construct($name, $type, array $parameters = NULL, array $options = [])
 		{
@@ -43,7 +43,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $column
 		 * @return static
 		 */
 		public function moveAfterColumn($column)
@@ -64,7 +64,7 @@
 
 
 		/**
-		 * @param  bool
+		 * @param  bool $nullable
 		 * @return static
 		 */
 		public function setNullable($nullable = TRUE)
@@ -75,7 +75,7 @@
 
 
 		/**
-		 * @param  scalar|NULL
+		 * @param  mixed|NULL $defaultValue
 		 * @return static
 		 */
 		public function setDefaultValue($defaultValue)
@@ -86,7 +86,7 @@
 
 
 		/**
-		 * @param  bool
+		 * @param  bool $autoIncrement
 		 * @return static
 		 */
 		public function setAutoIncrement($autoIncrement = TRUE)
@@ -97,7 +97,7 @@
 
 
 		/**
-		 * @param  string|NULL
+		 * @param  string|NULL $comment
 		 * @return static
 		 */
 		public function setComment($comment)
@@ -107,9 +107,6 @@
 		}
 
 
-		/**
-		 * @return string
-		 */
 		public function toSql(IDriver $driver)
 		{
 			$output = 'ADD COLUMN ' . $this->definition->toSql($driver);

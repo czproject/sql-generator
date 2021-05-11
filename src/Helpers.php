@@ -12,7 +12,7 @@
 
 
 		/**
-		 * @param  mixed
+		 * @param  mixed $value
 		 * @return string
 		 * @throws InvalidArgumentException
 		 * @see    https://api.dibiphp.com/3.0/source-Dibi.Translator.php.html#174
@@ -43,7 +43,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $s
 		 * @return string
 		 */
 		public static function normalizeNewLines($s)

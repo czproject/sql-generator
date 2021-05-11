@@ -19,12 +19,12 @@
 		/** @var string|NULL */
 		private $comment;
 
-		/** @var array  [name => value] */
+		/** @var array<string, string>  [name => value] */
 		private $options = [];
 
 
 		/**
-		 * @param  string
+		 * @param  string $tableName
 		 */
 		public function __construct($tableName)
 		{
@@ -33,10 +33,10 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string
-		 * @param  array
-		 * @param  array  [name => value]
+		 * @param  string $name
+		 * @param  string $type
+		 * @param  array<int|float|string> $parameters
+		 * @param  array<string, string> $options  [name => value]
 		 * @return AddColumn
 		 */
 		public function addColumn($name, $type, array $parameters = NULL, array $options = [])
@@ -46,7 +46,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $column
 		 * @return DropColumn
 		 */
 		public function dropColumn($column)
@@ -56,10 +56,10 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string
-		 * @param  array
-		 * @param  array  [name => value]
+		 * @param  string $name
+		 * @param  string $type
+		 * @param  array<int|float|string> $parameters
+		 * @param  array<string, string> $options  [name => value]
 		 * @return ModifyColumn
 		 */
 		public function modifyColumn($name, $type, array $parameters = NULL, array $options = [])
@@ -69,8 +69,8 @@
 
 
 		/**
-		 * @param  string|NULL
-		 * @param  string
+		 * @param  string|NULL $name
+		 * @param  string $type
 		 * @return AddIndex
 		 */
 		public function addIndex($name, $type)
@@ -80,7 +80,7 @@
 
 
 		/**
-		 * @param  string|NULL
+		 * @param  string|NULL $index
 		 * @return DropIndex
 		 */
 		public function dropIndex($index)
@@ -90,10 +90,10 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string[]|string
-		 * @param  string
-		 * @param  string[]|string
+		 * @param  string $name
+		 * @param  string[]|string $columns
+		 * @param  string $targetTable
+		 * @param  string[]|string $targetColumns
 		 * @return AddForeignKey
 		 */
 		public function addForeignKey($name, $columns, $targetTable, $targetColumns)
@@ -103,7 +103,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $foreignKey
 		 * @return DropForeignKey
 		 */
 		public function dropForeignKey($foreignKey)
@@ -113,7 +113,7 @@
 
 
 		/**
-		 * @param  string|NULL
+		 * @param  string|NULL $comment
 		 * @return static
 		 */
 		public function setComment($comment)
@@ -124,8 +124,8 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string
+		 * @param  string $name
+		 * @param  string $value
 		 * @return static
 		 */
 		public function setOption($name, $value)
@@ -135,9 +135,6 @@
 		}
 
 
-		/**
-		 * @return string
-		 */
 		public function toSql(IDriver $driver)
 		{
 			if (empty($this->statements) && empty($this->options) && !isset($this->comment)) {

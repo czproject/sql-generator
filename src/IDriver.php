@@ -6,31 +6,31 @@
 	interface IDriver
 	{
 		/**
-		 * @param  string
+		 * @param  string $value
 		 * @return string
 		 */
 		function escapeIdentifier($value);
 
 		/**
-		 * @param  string
+		 * @param  string $value
 		 * @return string
 		 */
 		function escapeText($value);
 
 		/**
-		 * @param  bool
+		 * @param  bool $value
 		 * @return string
 		 */
 		function escapeBool($value);
 
 		/**
-		 * @param  string|\DateTime
+		 * @param  string|\DateTime|\DateTimeInterface $value
 		 * @return string
 		 */
 		function escapeDate($value);
 
 		/**
-		 * @param  string|\DateTime
+		 * @param  string|\DateTime|\DateTimeInterface $value
 		 * @return string
 		 */
 		function escapeDateTime($value);

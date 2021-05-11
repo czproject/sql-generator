@@ -15,7 +15,7 @@
 		const ACTION_CASCADE = 'CASCADE';
 		const ACTION_SET_NULL = 'SET NULL';
 
-		/** @var string|NULL */
+		/** @var string */
 		private $name;
 
 		/** @var string[] */
@@ -24,7 +24,7 @@
 		/** @var string */
 		private $targetTable;
 
-		/** @var string */
+		/** @var string[] */
 		private $targetColumns;
 
 		/** @var string */
@@ -35,10 +35,10 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string[]|string
-		 * @param  string
-		 * @param  string[]|string
+		 * @param  string $name
+		 * @param  string[]|string $columns
+		 * @param  string $targetTable
+		 * @param  string[]|string $targetColumns
 		 */
 		public function __construct($name, $columns, $targetTable, $targetColumns)
 		{
@@ -64,7 +64,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $onUpdateAction
 		 * @return static
 		 */
 		public function setOnUpdateAction($onUpdateAction)
@@ -79,7 +79,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $onDeleteAction
 		 * @return static
 		 */
 		public function setOnDeleteAction($onDeleteAction)
@@ -93,9 +93,6 @@
 		}
 
 
-		/**
-		 * @return string
-		 */
 		public function toSql(IDriver $driver)
 		{
 			$output = 'CONSTRAINT ' . $driver->escapeIdentifier($this->name);
@@ -111,7 +108,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $action
 		 * @return bool
 		 */
 		private function validateAction($action)

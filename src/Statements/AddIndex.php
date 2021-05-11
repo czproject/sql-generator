@@ -15,8 +15,8 @@
 
 
 		/**
-		 * @param  string|NULL
-		 * @param  string
+		 * @param  string|NULL $name
+		 * @param  string $type
 		 */
 		public function __construct($name, $type)
 		{
@@ -25,9 +25,9 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string
-		 * @param  int|NULL
+		 * @param  string $column
+		 * @param  string $order
+		 * @param  int|NULL $length
 		 * @return static
 		 */
 		public function addColumn($column, $order = IndexColumnDefinition::ASC, $length = NULL)
@@ -37,9 +37,6 @@
 		}
 
 
-		/**
-		 * @return string
-		 */
 		public function toSql(IDriver $driver)
 		{
 			return 'ADD ' . $this->definition->toSql($driver);

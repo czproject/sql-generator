@@ -15,10 +15,10 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string[]|string
-		 * @param  string
-		 * @param  string[]|string
+		 * @param  string $name
+		 * @param  string[]|string $columns
+		 * @param  string $targetTable
+		 * @param  string[]|string $targetColumns
 		 */
 		public function __construct($name, $columns, $targetTable, $targetColumns)
 		{
@@ -27,7 +27,7 @@
 
 
 		/**
-		 * @param  int
+		 * @param  string $onUpdateAction
 		 * @return static
 		 */
 		public function setOnUpdateAction($onUpdateAction)
@@ -38,7 +38,7 @@
 
 
 		/**
-		 * @param  int
+		 * @param  string $onDeleteAction
 		 * @return static
 		 */
 		public function setOnDeleteAction($onDeleteAction)
@@ -48,9 +48,6 @@
 		}
 
 
-		/**
-		 * @return string
-		 */
 		public function toSql(IDriver $driver)
 		{
 			return 'ADD ' . $this->definition->toSql($driver);

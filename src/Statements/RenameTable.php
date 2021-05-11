@@ -18,8 +18,8 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string
+		 * @param  string $oldTable
+		 * @param  string $newTable
 		 */
 		public function __construct($oldTable, $newTable)
 		{
@@ -28,9 +28,6 @@
 		}
 
 
-		/**
-		 * @return string
-		 */
 		public function toSql(IDriver $driver)
 		{
 			if ($driver instanceof Drivers\MysqlDriver) {

@@ -15,7 +15,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $foreignKey
 		 */
 		public function __construct($foreignKey)
 		{
@@ -23,9 +23,6 @@
 		}
 
 
-		/**
-		 * @return string
-		 */
 		public function toSql(IDriver $driver)
 		{
 			return 'DROP FOREIGN KEY ' . $driver->escapeIdentifier($this->foreignKey);

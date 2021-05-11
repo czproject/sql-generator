@@ -13,7 +13,7 @@
 		const ASC = 'ASC';
 		const DESC = 'DESC';
 
-		/** @var string|NULL */
+		/** @var string */
 		private $name;
 
 		/** @var string */
@@ -24,9 +24,9 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string
-		 * @param  int|NULL
+		 * @param  string $name
+		 * @param  string $order
+		 * @param  int|NULL $length
 		 */
 		public function __construct($name, $order = self::ASC, $length = NULL)
 		{
@@ -37,7 +37,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $order
 		 * @return static
 		 */
 		private function setOrder($order)
@@ -53,9 +53,6 @@
 		}
 
 
-		/**
-		 * @return string
-		 */
 		public function toSql(IDriver $driver)
 		{
 			$output = $driver->escapeIdentifier($this->name);

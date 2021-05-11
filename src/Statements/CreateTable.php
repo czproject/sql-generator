@@ -13,24 +13,24 @@
 		/** @var string */
 		private $tableName;
 
-		/** @var array  [name => ColumnDefinition] */
+		/** @var array<string, ColumnDefinition>  [name => ColumnDefinition] */
 		private $columns = [];
 
-		/** @var array  [name => IndexDefinition] */
+		/** @var array<string, IndexDefinition>  [name => IndexDefinition] */
 		private $indexes = [];
 
-		/** @var array  [name => ForeignKeyDefinition] */
+		/** @var array<string, ForeignKeyDefinition>  [name => ForeignKeyDefinition] */
 		private $foreignKeys = [];
 
 		/** @var string|NULL */
 		private $comment;
 
-		/** @var array  [name => value] */
+		/** @var array<string, string>  [name => value] */
 		private $options = [];
 
 
 		/**
-		 * @param  string
+		 * @param  string $tableName
 		 */
 		public function __construct($tableName)
 		{
@@ -39,8 +39,10 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string
+		 * @param  string $name
+		 * @param  string $type
+		 * @param  array<int|float|string>|NULL $parameters
+		 * @param  array<string, string> $options
 		 * @return ColumnDefinition
 		 */
 		public function addColumn($name, $type, array $parameters = NULL, array $options = [])
@@ -54,8 +56,8 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string
+		 * @param  string $name
+		 * @param  string $type
 		 * @return IndexDefinition
 		 */
 		public function addIndex($name, $type)
@@ -69,10 +71,10 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string[]|string
-		 * @param  string
-		 * @param  string[]|string
+		 * @param  string $name
+		 * @param  string[]|string $columns
+		 * @param  string $targetTable
+		 * @param  string[]|string $targetColumns
 		 * @return ForeignKeyDefinition
 		 */
 		public function addForeignKey($name, $columns, $targetTable, $targetColumns)
@@ -86,7 +88,7 @@
 
 
 		/**
-		 * @param  string|NULL
+		 * @param  string|NULL $comment
 		 * @return static
 		 */
 		public function setComment($comment)
@@ -97,8 +99,8 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string
+		 * @param  string $name
+		 * @param  string $value
 		 * @return static
 		 */
 		public function setOption($name, $value)
@@ -108,9 +110,6 @@
 		}
 
 
-		/**
-		 * @return string
-		 */
 		public function toSql(IDriver $driver)
 		{
 			$output = 'CREATE TABLE ' . $driver->escapeIdentifier($this->tableName) . " (\n";

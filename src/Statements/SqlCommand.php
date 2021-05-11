@@ -13,7 +13,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $command
 		 */
 		public function __construct($command)
 		{
@@ -21,9 +21,6 @@
 		}
 
 
-		/**
-		 * @return string
-		 */
 		public function toSql(IDriver $driver)
 		{
 			return rtrim($this->command, ';') . ';';

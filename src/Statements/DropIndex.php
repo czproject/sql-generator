@@ -16,7 +16,7 @@
 
 
 		/**
-		 * @param  string|NULL
+		 * @param  string|NULL $index
 		 */
 		public function __construct($index)
 		{
@@ -24,9 +24,6 @@
 		}
 
 
-		/**
-		 * @return string
-		 */
 		public function toSql(IDriver $driver)
 		{
 			if ($this->index === NULL) { // PRIMARY KEY

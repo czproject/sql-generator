@@ -14,7 +14,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $comment
 		 */
 		public function __construct($comment)
 		{
@@ -22,9 +22,6 @@
 		}
 
 
-		/**
-		 * @return string
-		 */
 		public function toSql(IDriver $driver)
 		{
 			return '-- ' . str_replace("\n", "\n-- ", Helpers::normalizeNewLines(trim($this->comment)));
