@@ -57,6 +57,20 @@
 
 
 		/**
+		 * @param  string|TableName $tableName
+		 * @return string|TableName
+		 */
+		public static function createTableName($tableName)
+		{
+			if (is_string($tableName) && strpos($tableName, '.')) {
+				return TableName::create($tableName);
+			}
+
+			return $tableName;
+		}
+
+
+		/**
 		 * @param  string $s
 		 * @return string
 		 */

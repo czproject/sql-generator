@@ -44,7 +44,7 @@
 		public function __construct($name, $columns, $targetTable, $targetColumns)
 		{
 			$this->name = $name;
-			$this->targetTable = $targetTable;
+			$this->targetTable = Helpers::createTableName($targetTable);
 
 			if (!is_array($columns)) {
 				$columns = [$columns];

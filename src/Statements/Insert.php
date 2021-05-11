@@ -23,7 +23,7 @@
 		 */
 		public function __construct($tableName, array $data)
 		{
-			$this->tableName = $tableName;
+			$this->tableName = Helpers::createTableName($tableName);
 			$this->data = $data;
 		}
 

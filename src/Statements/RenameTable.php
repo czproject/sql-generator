@@ -25,8 +25,8 @@
 		 */
 		public function __construct($oldTable, $newTable)
 		{
-			$this->oldTable = $oldTable;
-			$this->newTable = $newTable;
+			$this->oldTable = Helpers::createTableName($oldTable);
+			$this->newTable = Helpers::createTableName($newTable);
 		}
 
 
