@@ -43,6 +43,20 @@
 
 
 		/**
+		 * @param  string|TableName $tableName
+		 * @return string
+		 */
+		public static function escapeTableName($tableName, IDriver $driver)
+		{
+			if ($tableName instanceof TableName) {
+				return $tableName->toString($driver);
+			}
+
+			return $driver->escapeIdentifier($tableName);
+		}
+
+
+		/**
 		 * @param  string $s
 		 * @return string
 		 */

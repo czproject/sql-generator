@@ -4,22 +4,24 @@
 
 	use CzProject\SqlGenerator\Drivers;
 	use CzProject\SqlGenerator\IDriver;
+	use CzProject\SqlGenerator\Helpers;
 	use CzProject\SqlGenerator\NotImplementedException;
 	use CzProject\SqlGenerator\IStatement;
+	use CzProject\SqlGenerator\TableName;
 
 
 	class RenameTable implements IStatement
 	{
-		/** @var string */
+		/** @var string|TableName */
 		private $oldTable;
 
-		/** @var string */
+		/** @var string|TableName */
 		private $newTable;
 
 
 		/**
-		 * @param  string $oldTable
-		 * @param  string $newTable
+		 * @param  string|TableName $oldTable
+		 * @param  string|TableName $newTable
 		 */
 		public function __construct($oldTable, $newTable)
 		{
@@ -31,9 +33,9 @@
 		public function toSql(IDriver $driver)
 		{
 			if ($driver instanceof Drivers\MysqlDriver) {
-				return 'RENAME TABLE ' . $driver->escapeIdentifier($this->oldTable)
+				return 'RENAME TABLE ' . Helpers::escapeTableName($this->oldTable, $driver)
 					. ' TO '
-					. $driver->escapeIdentifier($this->newTable)
+					. Helpers::escapeTableName($this->newTable, $driver)
 					. ';';
 			}
 

@@ -3,13 +3,15 @@
 	namespace CzProject\SqlGenerator\Statements;
 
 	use CzProject\SqlGenerator\DuplicateException;
+	use CzProject\SqlGenerator\Helpers;
 	use CzProject\SqlGenerator\IDriver;
 	use CzProject\SqlGenerator\IStatement;
+	use CzProject\SqlGenerator\TableName;
 
 
 	class CreateTable implements IStatement
 	{
-		/** @var string */
+		/** @var string|TableName */
 		private $tableName;
 
 		/** @var array<string, ColumnDefinition>  [name => ColumnDefinition] */
@@ -29,7 +31,7 @@
 
 
 		/**
-		 * @param  string $tableName
+		 * @param  string|TableName $tableName
 		 */
 		public function __construct($tableName)
 		{
@@ -111,7 +113,7 @@
 
 		public function toSql(IDriver $driver)
 		{
-			$output = 'CREATE TABLE ' . $driver->escapeIdentifier($this->tableName) . " (\n";
+			$output = 'CREATE TABLE ' . Helpers::escapeTableName($this->tableName, $driver) . " (\n";
 
 			// columns
 			$isFirst = TRUE;

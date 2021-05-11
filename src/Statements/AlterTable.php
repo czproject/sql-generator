@@ -2,13 +2,15 @@
 
 	namespace CzProject\SqlGenerator\Statements;
 
+	use CzProject\SqlGenerator\Helpers;
 	use CzProject\SqlGenerator\IDriver;
 	use CzProject\SqlGenerator\IStatement;
+	use CzProject\SqlGenerator\TableName;
 
 
 	class AlterTable implements IStatement
 	{
-		/** @var string */
+		/** @var string|TableName */
 		private $tableName;
 
 		/** @var IStatement[] */
@@ -22,7 +24,7 @@
 
 
 		/**
-		 * @param  string $tableName
+		 * @param  string|TableName $tableName
 		 */
 		public function __construct($tableName)
 		{
@@ -139,7 +141,7 @@
 				return '';
 			}
 
-			$output = 'ALTER TABLE ' . $driver->escapeIdentifier($this->tableName) . "\n";
+			$output = 'ALTER TABLE ' . Helpers::escapeTableName($this->tableName, $driver) . "\n";
 			$isFirst = TRUE;
 
 			foreach ($this->statements as $statement) {

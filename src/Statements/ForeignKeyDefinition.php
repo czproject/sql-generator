@@ -2,9 +2,11 @@
 
 	namespace CzProject\SqlGenerator\Statements;
 
+	use CzProject\SqlGenerator\Helpers;
 	use CzProject\SqlGenerator\OutOfRangeException;
 	use CzProject\SqlGenerator\IDriver;
 	use CzProject\SqlGenerator\IStatement;
+	use CzProject\SqlGenerator\TableName;
 
 
 	class ForeignKeyDefinition implements IStatement
@@ -20,7 +22,7 @@
 		/** @var string[] */
 		private $columns;
 
-		/** @var string */
+		/** @var string|TableName */
 		private $targetTable;
 
 		/** @var string[] */
@@ -36,7 +38,7 @@
 		/**
 		 * @param  string $name
 		 * @param  string[]|string $columns
-		 * @param  string $targetTable
+		 * @param  string|TableName $targetTable
 		 * @param  string[]|string $targetColumns
 		 */
 		public function __construct($name, $columns, $targetTable, $targetColumns)
@@ -97,7 +99,7 @@
 			$output = 'CONSTRAINT ' . $driver->escapeIdentifier($this->name);
 			$output .= ' FOREIGN KEY (';
 			$output .= implode(', ', array_map([$driver, 'escapeIdentifier'], $this->columns));
-			$output .= ') REFERENCES ' . $driver->escapeIdentifier($this->targetTable) . ' (';
+			$output .= ') REFERENCES ' . Helpers::escapeTableName($this->targetTable, $driver) . ' (';
 			$output .= implode(', ', array_map([$driver, 'escapeIdentifier'], $this->targetColumns));
 			$output .= ')';
 			$output .= ' ON DELETE ' . $this->onDeleteAction;

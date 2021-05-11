@@ -5,11 +5,12 @@
 	use CzProject\SqlGenerator\Helpers;
 	use CzProject\SqlGenerator\IDriver;
 	use CzProject\SqlGenerator\IStatement;
+	use CzProject\SqlGenerator\TableName;
 
 
 	class Insert implements IStatement
 	{
-		/** @var string */
+		/** @var string|TableName */
 		private $tableName;
 
 		/** @var array<string, mixed> */
@@ -17,7 +18,7 @@
 
 
 		/**
-		 * @param  string $tableName
+		 * @param  string|TableName $tableName
 		 * @param  array<string, mixed> $data
 		 */
 		public function __construct($tableName, array $data)
@@ -29,7 +30,7 @@
 
 		public function toSql(IDriver $driver)
 		{
-			$output = 'INSERT INTO ' . $driver->escapeIdentifier($this->tableName);
+			$output = 'INSERT INTO ' . Helpers::escapeTableName($this->tableName, $driver);
 
 			// columns
 			$output .= ' (';

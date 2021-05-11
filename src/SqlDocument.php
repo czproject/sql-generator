@@ -91,7 +91,7 @@
 
 
 		/**
-		 * @param  string $tableName
+		 * @param  string|TableName $tableName
 		 * @param  array<string, mixed> $data
 		 * @return Statements\Insert
 		 */
@@ -104,7 +104,7 @@
 
 
 		/**
-		 * @param  string $tableName
+		 * @param  string|TableName $tableName
 		 * @return Statements\CreateTable
 		 */
 		public function createTable($tableName)
@@ -116,7 +116,7 @@
 
 
 		/**
-		 * @param  string $tableName
+		 * @param  string|TableName $tableName
 		 * @return Statements\DropTable
 		 */
 		public function dropTable($tableName)
@@ -128,8 +128,8 @@
 
 
 		/**
-		 * @param  string $oldTable
-		 * @param  string $newTable
+		 * @param  string|TableName $oldTable
+		 * @param  string|TableName $newTable
 		 * @return Statements\RenameTable
 		 */
 		public function renameTable($oldTable, $newTable)
@@ -141,7 +141,7 @@
 
 
 		/**
-		 * @param  string $tableName
+		 * @param  string|TableName $tableName
 		 * @return Statements\AlterTable
 		 */
 		public function alterTable($tableName)
