@@ -3,7 +3,6 @@
 	namespace CzProject\SqlGenerator\Statements;
 
 	use CzProject\SqlGenerator\OutOfRangeException;
-	use CzProject\SqlGenerator\Helpers;
 	use CzProject\SqlGenerator\IDriver;
 	use CzProject\SqlGenerator\IStatement;
 
