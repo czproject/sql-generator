@@ -20,6 +20,6 @@ test(function () {
 
 		$table->toSql(new Tests\DummyDriver);
 
-	}, 'CzProject\SqlGenerator\NotImplementedException', 'Drop of primary key is not implemented for driver Tests\DummyDriver.');
+	}, \CzProject\SqlGenerator\NotImplementedException::class, 'Drop of primary key is not implemented for driver Tests\DummyDriver.');
 
 });

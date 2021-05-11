@@ -35,6 +35,6 @@ test(function () {
 
 	Assert::exception(function () use ($sql, $file) {
 		$sql->save($file, new Drivers\MysqlDriver);
-	}, 'CzProject\SqlGenerator\IOException', "Unable to write file '$file'.");
+	}, \CzProject\SqlGenerator\IOException::class, "Unable to write file '$file'.");
 
 });

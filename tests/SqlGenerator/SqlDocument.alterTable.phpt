@@ -85,7 +85,7 @@ test(function () {
 
 		$contactTable->addColumn('name', 'VARCHAR(50)');
 
-	}, 'CzProject\SqlGenerator\DuplicateException', "Column 'name' already exists.");
+	}, \CzProject\SqlGenerator\DuplicateException::class, "Column 'name' already exists.");
 
 });
 
@@ -101,7 +101,7 @@ test(function () {
 
 		$contactTable->addIndex('name', 'INDEX');
 
-	}, 'CzProject\SqlGenerator\DuplicateException', "Index 'name' already exists.");
+	}, \CzProject\SqlGenerator\DuplicateException::class, "Index 'name' already exists.");
 
 });
 
@@ -117,6 +117,6 @@ test(function () {
 
 		$contactTable->addForeignKey('fk_person', 'person_id', 'person', 'id');
 
-	}, 'CzProject\SqlGenerator\DuplicateException', "Foreign key 'fk_person' already exists.");
+	}, \CzProject\SqlGenerator\DuplicateException::class, "Foreign key 'fk_person' already exists.");
 
 });

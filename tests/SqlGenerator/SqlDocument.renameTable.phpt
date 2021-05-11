@@ -20,6 +20,6 @@ test(function () {
 
 		$sql->toSql(new Tests\DummyDriver);
 
-	}, 'CzProject\SqlGenerator\NotImplementedException', 'Table rename is not implemented for driver Tests\DummyDriver.');
+	}, \CzProject\SqlGenerator\NotImplementedException::class, 'Table rename is not implemented for driver Tests\DummyDriver.');
 
 });

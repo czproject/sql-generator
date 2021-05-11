@@ -10,7 +10,7 @@ require __DIR__ . '/../bootstrap.php';
 test(function () {
 	Assert::exception(function () {
 		new Helpers;
-	}, 'CzProject\SqlGenerator\StaticClassException', 'This is static class.');
+	}, \CzProject\SqlGenerator\StaticClassException::class, 'This is static class.');
 });
 
 
@@ -27,5 +27,5 @@ test(function () {
 
 	Assert::exception(function () use ($driver) {
 		Helpers::formatValue([], $driver);
-	}, 'CzProject\SqlGenerator\InvalidArgumentException', 'Unsupported value type.');
+	}, \CzProject\SqlGenerator\InvalidArgumentException::class, 'Unsupported value type.');
 });
