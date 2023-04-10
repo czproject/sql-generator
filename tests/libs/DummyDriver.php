@@ -7,10 +7,6 @@
 
 	class DummyDriver implements IDriver
 	{
-		/**
-		 * @param  string
-		 * @return string
-		 */
 		public function escapeIdentifier($value)
 		{
 			// @see http://dev.mysql.com/doc/refman/5.0/en/identifiers.html
@@ -19,10 +15,6 @@
 		}
 
 
-		/**
-		 * @param  string
-		 * @return string
-		 */
 		public function escapeText($value)
 		{
 			// https://dev.mysql.com/doc/refman/5.5/en/string-literals.html
@@ -35,20 +27,12 @@
 		}
 
 
-		/**
-		 * @param  bool
-		 * @return string
-		 */
 		public function escapeBool($value)
 		{
 			return $value ? 'TRUE' : 'FALSE';
 		}
 
 
-		/**
-		 * @param  string|\DateTime
-		 * @return string
-		 */
 		public function escapeDate($value)
 		{
 			if (!($value instanceof \DateTime) && !($value instanceof \DateTimeInterface)) {
@@ -58,10 +42,6 @@
 		}
 
 
-		/**
-		 * @param  string|\DateTime
-		 * @return string
-		 */
 		public function escapeDateTime($value)
 		{
 			if (!($value instanceof \DateTime) && !($value instanceof \DateTimeInterface)) {

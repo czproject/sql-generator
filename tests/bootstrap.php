@@ -5,12 +5,18 @@ require __DIR__ . '/../vendor/autoload.php';
 Tester\Environment::setup();
 
 
-function test($cb)
+/**
+ * @return void
+ */
+function test(callable $cb)
 {
 	$cb();
 }
 
 
+/**
+ * @return string
+ */
 function prepareTempDir()
 {
 	$tempDir = __DIR__ . '/tmp/' . getmypid();
