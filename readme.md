@@ -3,17 +3,7 @@
 
 [![Tests Status](https://github.com/czproject/sql-generator/workflows/Tests/badge.svg)](https://github.com/czproject/sql-generator/actions)
 
-
-Support Me
-----------
-
-Do you like LeanMapper-extension? Are you looking forward to the **new features**?
-
-<a href="https://www.paypal.com/donate?hosted_button_id=BWR5RJCDLY7SG"><img src="https://buymecoffee.intm.org/img/janpecha-paypal-donate@2x.png" alt="PayPal or credit/debit card" width="254" height="248"></a>
-
-<img src="https://buymecoffee.intm.org/img/bitcoin@2x.png" alt="Bitcoin" height="32"> `bc1qrq9egf99a6z3576twggrp6uv5td5r3pq0j4awe`
-
-Thank you!
+<a href="https://www.janpecha.cz/donate/"><img src="https://buymecoffee.intm.org/img/donate-banner.v1.svg" alt="Donate" height="100"></a>
 
 
 ## Installation

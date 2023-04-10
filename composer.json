@@ -9,6 +9,9 @@
 			"homepage": "https://www.janpecha.cz/"
 		}
 	],
+	"funding": [
+		{"type": "other", "url": "https://www.janpecha.cz/donate/"}
+	],
 	"require": {
 		"php": ">=5.6.0"
 	},
