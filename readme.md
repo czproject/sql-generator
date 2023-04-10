@@ -1,7 +1,9 @@
-
 # CzProject\SqlGenerator
 
-[![Tests Status](https://github.com/czproject/sql-generator/workflows/Tests/badge.svg)](https://github.com/czproject/sql-generator/actions)
+[![Build Status](https://github.com/czproject/sql-generator/workflows/Build/badge.svg)](https://github.com/czproject/sql-generator/actions)
+[![Downloads this Month](https://img.shields.io/packagist/dm/czproject/sql-generator.svg)](https://packagist.org/packages/czproject/sql-generator)
+[![Latest Stable Version](https://poser.pugx.org/czproject/sql-generator/v/stable)](https://github.com/czproject/sql-generator/releases)
+[![License](https://img.shields.io/badge/license-New%20BSD-blue.svg)](https://github.com/czproject/sql-generator/blob/master/license.md)
 
 <a href="https://www.janpecha.cz/donate/"><img src="https://buymecoffee.intm.org/img/donate-banner.v1.svg" alt="Donate" height="100"></a>
 
