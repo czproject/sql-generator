@@ -22,7 +22,7 @@
 		 * @param  string $name
 		 * @param  string $type
 		 * @param  array<int|float|string> $parameters
-		 * @param  array<string, string> $options  [name => value]
+		 * @param  array<string, string|NULL> $options  [name => value]
 		 */
 		public function __construct($name, $type, array $parameters = NULL, array $options = [])
 		{

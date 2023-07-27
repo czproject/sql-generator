@@ -19,7 +19,7 @@
 		/** @var array<int|float|string> */
 		private $parameters = [];
 
-		/** @var array<string, string>  [name => value] */
+		/** @var array<string, string|NULL>  [name => value] */
 		private $options = [];
 
 		/** @var bool */
@@ -39,7 +39,7 @@
 		 * @param  string $name
 		 * @param  string $type
 		 * @param  array<int|float|string>|NULL $parameters
-		 * @param  array<string, string> $options  [name => value]
+		 * @param  array<string, string|NULL> $options  [name => value]
 		 */
 		public function __construct($name, $type, array $parameters = NULL, array $options = [])
 		{

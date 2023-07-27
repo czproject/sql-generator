@@ -43,7 +43,7 @@
 		 * @param  string $name
 		 * @param  string $type
 		 * @param  array<int|float|string>|NULL $parameters
-		 * @param  array<string, string> $options
+		 * @param  array<string, string|NULL> $options
 		 * @return ColumnDefinition
 		 */
 		public function addColumn($name, $type, array $parameters = NULL, array $options = [])
@@ -57,7 +57,7 @@
 
 
 		/**
-		 * @param  string $name
+		 * @param  string|NULL $name
 		 * @param  string $type
 		 * @return IndexDefinition
 		 */
@@ -74,7 +74,7 @@
 		/**
 		 * @param  string $name
 		 * @param  string[]|string $columns
-		 * @param  string $targetTable
+		 * @param  string|TableName $targetTable
 		 * @param  string[]|string $targetColumns
 		 * @return ForeignKeyDefinition
 		 */

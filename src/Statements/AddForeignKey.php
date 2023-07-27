@@ -4,6 +4,7 @@
 
 	use CzProject\SqlGenerator\IDriver;
 	use CzProject\SqlGenerator\IStatement;
+	use CzProject\SqlGenerator\TableName;
 
 
 	class AddForeignKey implements IStatement
@@ -15,7 +16,7 @@
 		/**
 		 * @param  string $name
 		 * @param  string[]|string $columns
-		 * @param  string $targetTable
+		 * @param  string|TableName $targetTable
 		 * @param  string[]|string $targetColumns
 		 */
 		public function __construct($name, $columns, $targetTable, $targetColumns)

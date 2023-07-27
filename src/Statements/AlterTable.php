@@ -36,7 +36,7 @@
 		 * @param  string $name
 		 * @param  string $type
 		 * @param  array<int|float|string> $parameters
-		 * @param  array<string, string> $options  [name => value]
+		 * @param  array<string, string|NULL> $options  [name => value]
 		 * @return AddColumn
 		 */
 		public function addColumn($name, $type, array $parameters = NULL, array $options = [])
@@ -59,7 +59,7 @@
 		 * @param  string $name
 		 * @param  string $type
 		 * @param  array<int|float|string> $parameters
-		 * @param  array<string, string> $options  [name => value]
+		 * @param  array<string, string|NULL> $options  [name => value]
 		 * @return ModifyColumn
 		 */
 		public function modifyColumn($name, $type, array $parameters = NULL, array $options = [])
@@ -92,7 +92,7 @@
 		/**
 		 * @param  string $name
 		 * @param  string[]|string $columns
-		 * @param  string $targetTable
+		 * @param  string|TableName $targetTable
 		 * @param  string[]|string $targetColumns
 		 * @return AddForeignKey
 		 */
