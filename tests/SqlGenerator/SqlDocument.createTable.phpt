@@ -3,6 +3,7 @@
 use CzProject\SqlGenerator\Drivers;
 use CzProject\SqlGenerator\SqlDocument;
 use CzProject\SqlGenerator\Statements\IndexDefinition;
+use CzProject\SqlGenerator\Value;
 use Tester\Assert;
 
 require __DIR__ . '/../bootstrap.php';
@@ -15,13 +16,19 @@ test(function () {
 
 	$contactTable = $sql->createTable('contact')
 		->setComment('Clients table.')
+		->setOption('AUTO_INCREMENT', Value::create(123))
+		->setOption('CHECKSUM', Value::create(FALSE))
+		->setOption('COMPRESSION', Value::create('NONE'))
 		->setOption('ENGINE', 'InnoDB');
 	$contactTable->addColumn('id', 'INT', NULL, ['UNSIGNED' => NULL])
 		->setAutoIncrement();
 	$contactTable->addColumn('name', 'VARCHAR(100)')
 		->setComment('Client name');
 	$contactTable->addColumn('surname', 'VARCHAR(100)');
-	$contactTable->addColumn('active', 'TINYINT', [1], ['UNSIGNED' => NULL])
+	$contactTable->addColumn('active', 'TINYINT', [1], [
+			'UNSIGNED' => NULL,
+			'MYOPTION' => Value::create('abc'),
+		])
 		->setDefaultValue(TRUE);
 	$contactTable->addColumn('status', 'ENUM', ['new', 'verified'])
 		->setDefaultValue('new');
@@ -43,7 +50,7 @@ test(function () {
 		"\t`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,",
 		"\t`name` VARCHAR(100) NOT NULL COMMENT 'Client name',",
 		"\t`surname` VARCHAR(100) NOT NULL,",
-		"\t`active` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,",
+		"\t`active` TINYINT(1) UNSIGNED MYOPTION 'abc' NOT NULL DEFAULT 1,",
 		"\t`status` ENUM('new', 'verified') NOT NULL DEFAULT 'new',",
 		"\t`created` DATETIME NOT NULL,",
 		"\t`removed` DATETIME NULL,",
@@ -52,6 +59,9 @@ test(function () {
 		"\tCONSTRAINT `fk_creator` FOREIGN KEY (`creator_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT",
 		')',
 		'COMMENT \'Clients table.\'',
+		'AUTO_INCREMENT=123',
+		'CHECKSUM=0',
+		'COMPRESSION=\'NONE\'',
 		'ENGINE=InnoDB;',
 		'',
 	]), $sql->toSql($driver));

@@ -6,6 +6,7 @@
 	use CzProject\SqlGenerator\Helpers;
 	use CzProject\SqlGenerator\IDriver;
 	use CzProject\SqlGenerator\IStatement;
+	use CzProject\SqlGenerator\Value;
 
 
 	class ColumnDefinition implements IStatement
@@ -19,7 +20,7 @@
 		/** @var array<int|float|string> */
 		private $parameters = [];
 
-		/** @var array<string, string|NULL>  [name => value] */
+		/** @var array<string, string|Value|NULL>  [name => value] */
 		private $options = [];
 
 		/** @var bool */
@@ -39,7 +40,7 @@
 		 * @param  string $name
 		 * @param  string $type
 		 * @param  array<int|float|string>|NULL $parameters
-		 * @param  array<string, string|NULL> $options  [name => value]
+		 * @param  array<string, string|Value|NULL> $options  [name => value]
 		 */
 		public function __construct($name, $type, array $parameters = NULL, array $options = [])
 		{
@@ -118,13 +119,13 @@
 
 			foreach ($specialOptions as $option) {
 				if (isset($options[$option])) {
-					$output .= ' ' . self::formatOption($option, $options[$option]);
+					$output .= ' ' . self::formatOption($option, $options[$option], $driver);
 					unset($options[$option]);
 				}
 			}
 
 			foreach ($options as $option => $value) {
-				$output .= ' ' . self::formatOption($option, $value);
+				$output .= ' ' . self::formatOption($option, $value, $driver);
 			}
 
 			$output .= ' ' . ($this->nullable ? 'NULL' : 'NOT NULL');
@@ -147,11 +148,15 @@
 
 		/**
 		 * @param  string $name
-		 * @param  string|NULL $value
+		 * @param  string|Value|NULL $value
 		 * @return string
 		 */
-		private static function formatOption($name, $value)
+		private static function formatOption($name, $value, IDriver $driver)
 		{
+			if ($value instanceof Value) {
+				$value = $value->toString($driver);
+			}
+
 			return $name . ($value !== NULL ? (' ' . $value) : '');
 		}
 	}

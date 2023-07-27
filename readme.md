@@ -104,6 +104,36 @@ $sql->getSqlQueries($driver); // returns string[]
 $sql->save($file, $driver); // saves SQL into file
 ```
 
+## Special Values
+
+There are value objects for specific cases:
+
+### TableName
+
+Delimited table name.
+
+```php
+use CzProject\SqlGenerator\TableName;
+
+$table = $sql->createTable(TableName::create('schema.table'))
+$table->addForeignKey('fk_table_id', 'id', TableName::create('schema2.table2'), 'id');
+// and more ($sql->renameTable(),...)
+```
+
+
+### Value
+
+Scalar/stringable/datetime value. It can be used in option values.
+
+```php
+use CzProject\SqlGenerator\Value;
+
+$table->setOption('AUTO_INCREMENT', Value::create(123)); // generates AUTO_INCREMENT=123
+$table->setOption('CHECKSUM', Value::create(FALSE)); // generates CHECKSUM=0
+$table->setOption('COMPRESSION', Value::create('NONE')); // generates COMPRESSION='NONE'
+```
+
+
 ## Supported database
 
 Currently is supported common SQL and MySQL.

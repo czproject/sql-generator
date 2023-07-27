@@ -7,6 +7,7 @@
 	use CzProject\SqlGenerator\IDriver;
 	use CzProject\SqlGenerator\IStatement;
 	use CzProject\SqlGenerator\TableName;
+	use CzProject\SqlGenerator\Value;
 
 
 	class CreateTable implements IStatement
@@ -26,7 +27,7 @@
 		/** @var string|NULL */
 		private $comment;
 
-		/** @var array<string, string>  [name => value] */
+		/** @var array<string, string|Value>  [name => value] */
 		private $options = [];
 
 
@@ -43,7 +44,7 @@
 		 * @param  string $name
 		 * @param  string $type
 		 * @param  array<int|float|string>|NULL $parameters
-		 * @param  array<string, string|NULL> $options
+		 * @param  array<string, string|Value|NULL> $options
 		 * @return ColumnDefinition
 		 */
 		public function addColumn($name, $type, array $parameters = NULL, array $options = [])
@@ -101,7 +102,7 @@
 
 		/**
 		 * @param  string $name
-		 * @param  string $value
+		 * @param  string|Value $value
 		 * @return static
 		 */
 		public function setOption($name, $value)
@@ -160,7 +161,7 @@
 
 			foreach ($this->options as $optionName => $optionValue) {
 				$output .= "\n";
-				$output .= $optionName . '=' . $optionValue;
+				$output .= $optionName . '=' . ($optionValue instanceof Value ? $optionValue->toString($driver) : $optionValue);
 			}
 
 			$output .= ';';
