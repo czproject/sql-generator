@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use CzProject\SqlGenerator\Drivers;
 use CzProject\SqlGenerator\Statements;
 use Tester\Assert;
