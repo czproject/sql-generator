@@ -42,7 +42,7 @@
 		 * @param  array<string, string|Value|NULL> $options  [name => value]
 		 * @return AddColumn
 		 */
-		public function addColumn($name, $type, array $parameters = NULL, array $options = [])
+		public function addColumn($name, $type, ?array $parameters = NULL, array $options = [])
 		{
 			return $this->statements[] = new AddColumn($name, $type, $parameters, $options);
 		}
@@ -65,7 +65,7 @@
 		 * @param  array<string, string|Value|NULL> $options  [name => value]
 		 * @return ModifyColumn
 		 */
-		public function modifyColumn($name, $type, array $parameters = NULL, array $options = [])
+		public function modifyColumn($name, $type, ?array $parameters = NULL, array $options = [])
 		{
 			return $this->statements[] = new ModifyColumn($name, $type, $parameters, $options);
 		}

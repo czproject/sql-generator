@@ -49,7 +49,7 @@
 		 * @param  array<string, string|Value|NULL> $options
 		 * @return ColumnDefinition
 		 */
-		public function addColumn($name, $type, array $parameters = NULL, array $options = [])
+		public function addColumn($name, $type, ?array $parameters = NULL, array $options = [])
 		{
 			if (isset($this->columns[$name])) {
 				throw new DuplicateException("Column '$name' already exists.");

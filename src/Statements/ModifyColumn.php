@@ -27,7 +27,7 @@
 		 * @param  array<int|float|string> $parameters
 		 * @param  array<string, string|Value|NULL> $options  [name => value]
 		 */
-		public function __construct($name, $type, array $parameters = NULL, array $options = [])
+		public function __construct($name, $type, ?array $parameters = NULL, array $options = [])
 		{
 			$this->definition = new ColumnDefinition($name, $type, $parameters, $options);
 		}
